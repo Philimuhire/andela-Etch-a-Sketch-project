@@ -19,4 +19,10 @@ body {
   button#resetButton {
     margin-bottom: 20px;
   }
+
+  .square {
+    width: calc(960px / 16);
+    height: calc(960px / 16);
+    border: 1px solid #eee;
+  }
   
