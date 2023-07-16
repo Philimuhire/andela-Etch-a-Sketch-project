@@ -49,7 +49,6 @@ function changeColorOnHover(square) {
 }
 
 
-// Helper function to generate a random color
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -58,6 +57,7 @@ function getRandomColor() {
   }
   return color;
 }
+
 
 // Add hover effect to each grid square
 const squares = document.querySelectorAll('.square');
@@ -87,3 +87,23 @@ function resetGrid() {
 // Add click event listener to the reset button
 const resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', resetGrid);
+
+const blackButton = document.getElementById('blackButton');
+const whiteButton = document.getElementById('whiteButton');
+const rainbowButton = document.getElementById('rainbowButton');
+
+// Event listener for the black button
+blackButton.addEventListener('click', function () {
+  colorMode = 'black';
+});
+
+// Event listener for the white button
+whiteButton.addEventListener('click', function () {
+  colorMode = 'white';
+});
+
+// Event listener for the rainbow button
+rainbowButton.addEventListener('click', function () {
+  colorMode = 'rainbow';
+});
+
