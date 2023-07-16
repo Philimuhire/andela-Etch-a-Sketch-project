@@ -25,12 +25,29 @@ function createGrid(size) {
   // Generate the initial grid
   createGrid(gridSize);
   
-  // Function to change the color of a grid square on hover
+// Function to change the color of a grid square on hover
 function changeColorOnHover(square) {
+  let hoverCount = 0; // Counter to track the number of interactions
+  let colorMode = 'black'; // Default color mode
+
   square.addEventListener('mouseenter', function () {
-    square.style.backgroundColor = getRandomColor();
+    // Check the color mode and update the square's background color accordingly
+    switch (colorMode) {
+      case 'black':
+        square.style.backgroundColor = 'black';
+        break;
+      case 'white':
+        square.style.backgroundColor = 'white';
+        break;
+      case 'rainbow':
+        square.style.backgroundColor = getRandomColor();
+        break;
+    }
+
+    hoverCount++; // Increment the interaction counter
   });
 }
+
 
 // Helper function to generate a random color
 function getRandomColor() {
