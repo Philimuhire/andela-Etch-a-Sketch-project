@@ -18,23 +18,29 @@ function createGrid(size) {
     changeColorOnHover(square);
   }
 }
-  
-  // Initial grid size
-  let gridSize = 16;
-  
-  // Generate the initial grid
-  createGrid(gridSize);
-  
+
 // Function to change the color of a grid square on hover
 function changeColorOnHover(square) {
   let hoverCount = 0; // Counter to track the number of interactions
-  let colorMode = 'black'; // Default color mode
 
   square.addEventListener('mouseenter', function () {
+    // Generate random RGB values
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    // Calculate the darkening factor
+    const darkenFactor = hoverCount * 0.1;
+
+    // Apply the darkening effect
+    const darkenedRed = Math.floor(red * (1 - darkenFactor));
+    const darkenedGreen = Math.floor(green * (1 - darkenFactor));
+    const darkenedBlue = Math.floor(blue * (1 - darkenFactor));
+
     // Check the color mode and update the square's background color accordingly
     switch (colorMode) {
       case 'black':
-        square.style.backgroundColor = 'black';
+        square.style.backgroundColor = `rgb(${darkenedRed}, ${darkenedGreen}, ${darkenedBlue})`;
         break;
       case 'white':
         square.style.backgroundColor = 'white';
@@ -48,7 +54,6 @@ function changeColorOnHover(square) {
   });
 }
 
-
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -57,13 +62,6 @@ function getRandomColor() {
   }
   return color;
 }
-
-
-// Add hover effect to each grid square
-const squares = document.querySelectorAll('.square');
-squares.forEach(square => {
-  changeColorOnHover(square);
-});
 
 // Function to prompt the user for grid size and generate a new grid
 function resetGrid() {
@@ -91,6 +89,7 @@ resetButton.addEventListener('click', resetGrid);
 const blackButton = document.getElementById('blackButton');
 const whiteButton = document.getElementById('whiteButton');
 const rainbowButton = document.getElementById('rainbowButton');
+let colorMode = 'black';
 
 // Event listener for the black button
 blackButton.addEventListener('click', function () {
@@ -107,3 +106,5 @@ rainbowButton.addEventListener('click', function () {
   colorMode = 'rainbow';
 });
 
+// Generate the initial grid
+createGrid(16);
