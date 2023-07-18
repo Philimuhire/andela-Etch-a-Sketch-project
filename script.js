@@ -19,38 +19,38 @@ function createGrid(size) {
   }
 }
 
-// Function to change the color of a grid square on hover
 function changeColorOnHover(square) {
   let hoverCount = 0; // Counter to track the number of interactions
 
   square.addEventListener('mouseenter', function () {
-    // Generate random RGB values
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-
-    // Calculate the darkening factor
-    const darkenFactor = hoverCount * 0.1;
-
-    // Apply the darkening effect
-    const darkenedRed = Math.floor(red * (1 - darkenFactor));
-    const darkenedGreen = Math.floor(green * (1 - darkenFactor));
-    const darkenedBlue = Math.floor(blue * (1 - darkenFactor));
-
     // Check the color mode and update the square's background color accordingly
     switch (colorMode) {
       case 'black':
-        square.style.backgroundColor = `rgb(${darkenedRed}, ${darkenedGreen}, ${darkenedBlue})`;
+        square.style.backgroundColor = 'black';
         break;
       case 'white':
         square.style.backgroundColor = 'white';
         break;
       case 'rainbow':
-        square.style.backgroundColor = getRandomColor();
+        // Generate random RGB values
+        const red = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+
+        // Calculate the darkening factor
+        const darkenFactor = hoverCount * 0.1;
+
+        // Apply the darkening effect
+        const darkenedRed = Math.floor(red * (1 - darkenFactor));
+        const darkenedGreen = Math.floor(green * (1 - darkenFactor));
+        const darkenedBlue = Math.floor(blue * (1 - darkenFactor));
+
+        // Update the square's background color with the random RGB values
+        square.style.backgroundColor = `rgb(${darkenedRed}, ${darkenedGreen}, ${darkenedBlue})`;
+
+        hoverCount++; // Increment the interaction counter
         break;
     }
-
-    hoverCount++; // Increment the interaction counter
   });
 }
 
